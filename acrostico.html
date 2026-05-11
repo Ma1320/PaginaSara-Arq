@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acróstico - Ciberdelito</title>
+    <style>
+        body {
+            /* Degradado suave de esquina a esquina */
+            background: linear-gradient(135deg, #4b0082, #ff007f, #00d4ff);
+            background-attachment: fixed;
+            color: #e0fcfc; /* Un blanco azulado muy claro para legibilidad */
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .contenedor-acrostico {
+            background: rgba(132, 126, 126, 0.8); /* Fondo negro transparente para que resalten los colores */
+            border: 2px solid #00ffcc; /* Verde Acua para el borde */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(202, 215, 213, 0.3);
+        }
+
+        .linea {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            line-height: 1.5;
+        }
+
+        /* Resaltar la letra inicial */
+        .inicial {
+            color: #39ff14; /* Verde Neón para las letras del acróstico */
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px #39ff14;
+            margin-right: 8px;
+        }
+
+        /* AGREGA ESTO: La definición de la animación */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        /* MODIFICA O AGREGA: Esto le dice a las líneas que usen la animación */
+        .linea {
+            opacity: 0; 
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* AGREGA ESTO: Los retrasos para el efecto cascada */
+        .linea:nth-child(1) { animation-delay: 0.2s; }
+        .linea:nth-child(2) { animation-delay: 0.7s; }
+        .linea:nth-child(3) { animation-delay: 1.2s; }
+        .linea:nth-child(4) { animation-delay: 1.7s; }
+        .linea:nth-child(5) { animation-delay: 2.2s; }
+        .linea:nth-child(6) { animation-delay: 2.7s; }
+        .linea:nth-child(7) { animation-delay: 3.2s; }
+        .linea:nth-child(8) { animation-delay: 3.7s; }
+        .linea:nth-child(9) { animation-delay: 4.2s; }
+        .linea:nth-child(10) { animation-delay: 4.7s; }
+        .linea:nth-child(11) { animation-delay: 5.2s; }
+        .linea:nth-child(12) { animation-delay: 5.7s; }
+        .linea:nth-child(13) { animation-delay: 6.2s; }
+        .linea:nth-child(14) { animation-delay: 6.7s; }
+
+        .header-barra {
+            border: 2px solid #00d4ff; /* Celeste */
+            background: rgba(75, 0, 130, 0.5); /* Morado traslúcido */
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .imagen-encabezado {
+            width: 100% !important;  /* Se estira a lo ancho */
+            height: 100% !important; /* Se estira a lo alto */
+            object-fit: cover;       /* Corta la imagen para que llene el rectángulo sin deformarse */
+            object-position: center; /* Centra la parte importante de la foto */
+            filter: brightness(0.9);
+            filter: hue-rotate(150deg) saturate(1.5);
+        }
+
+        /* Centrar el contenedor de la imagen */
+        .contenedor-acrostico .linea:first-child {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        h1 {
+            color: #00ffcc; /* Verde Acua para el título */
+            text-shadow: 2px 2px #4b0082; /* Sombra morada para contraste */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor-acrostico">
+
+        <div class="header-barra linea">
+            <img src="Imagenes/Img2.jpeg" class="imagen-encabezado">
+        </div>
+
+        <h1>ANÁLISIS COMPLETADO</h1>
+        <h1>CIBERDELITO</h1>
+        
+        <div class="linea"><span class="inicial">C</span>rimen que acecha en la red</div>
+        <div class="linea"><span class="inicial">I</span>ntrusión en la privacidad</div>
+        <div class="linea"><span class="inicial">B</span>uscando vulnerar tu fe</div>
+        <div class="linea"><span class="inicial">E</span>ngaños en la inmensidad</div>
+        <div class="linea"><span class="inicial">R</span>obando tu identidad</div>
+        <div class="linea"><span class="inicial">D</span>atos que vuelan sin control</div>
+        <div class="linea"><span class="inicial">E</span>stafas tras el monitor</div>
+        <div class="linea"><span class="inicial">L</span>eyes que deben proteger</div>
+        <div class="linea"><span class="inicial">I</span>nternet no debe ser dolor</div>
+        <div class="linea"><span class="inicial">T</span>u seguridad es el deber</div>
+        <div class="linea"><span class="inicial">O</span>bserva siempre con valor</div>
+    </div>
+
+</body>
+</html>
