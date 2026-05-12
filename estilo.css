@@ -1,0 +1,307 @@
+
+        .body_inicio {
+            background-color: rgb(183, 173, 173);
+            color: #0f0; 
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-transform: uppercase;
+            animation: ruido-fondo 0.2s infinite;
+        }
+
+        /* Animación de parpadeo de color */
+        @keyframes ruido-fondo {
+            0% { background-color: #252424; }
+            5% { background-color: #3e3c3c; }
+            6% { background-color: #2e2c2c; }
+            7% { background-color: #922929; } /* Flash rojo muy sutil */
+            8% { background-color: #433f3f; }
+            100% { background-color: #030303; }
+        }
+
+        /* Líneas de escaneo (estática) */
+        .body_inicio::before {
+            content: " ";
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 255, 0, 0.15) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 10px;
+            z-index: 2;
+            pointer-events: none;
+            animation: movimiento-ruido 0.1s infinite linear;
+        }
+
+        @keyframes movimiento-ruido{
+            0% { background-position: 0 0;}
+            100% { background-position: 0 100%;}
+        }
+
+        #contenedor {
+            padding: 20px;
+            text-align: center;
+            animation: sacudida 0.1s infinite;
+        }
+
+        @keyframes sacudida {
+            0% { transform: translate(0,0); }
+            10% { transform: translate(-2px, 1px); }
+            20% { transform: translate(2px, -1px); }
+            30% { transform: translate(-1px, 2px); }
+            100% { transform: translate(0,0); }
+        }
+
+        #pantalla {
+        position: relative;
+        font-size: 8vw;
+        font-weight: bold;
+        /* Efecto de sombra doble: roja y azul para el estilo glitch */
+        text-shadow: 2px 0 #ff0000, -2px 0 #0000ff;
+        animation: glitch-texto 0.3s infinite;
+        }
+
+        @keyframes glitch-texto {
+            0% {
+                transform: translate(0);
+                text-shadow: 2px 0 #f00, -2px 0 #00f;
+            }
+            20% {
+                transform: translate(-3px, 2px);
+                text-shadow: -3px 0 #f00, 3px 0 #00f;
+            }
+            40% {
+                transform: translate(-3px, -2px);
+                color: #fff; /* Flash blanco momentáneo */
+            }
+            60% {
+                transform: translate(3px, 2px);
+                text-shadow: 2px 0 #f00, -2px 0 #00f;
+            }
+            80% {
+                transform: translate(3px, -2px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: #0f0;
+            margin-left: 5px;
+            vertical-align: middle;
+            animation: parpadeo 0.7s infinite;
+        }
+        @keyframes parpadeo {
+            50% { opacity: 0; }
+        }
+
+        /* Ajuste extra para pantallas grandes (PC) */
+        @media (min-width: 768px) {
+            #pantalla { font-size: 4rem; }
+        }
+
+/* ESTILOS DE JUEGO.HTML */
+
+        .body_juego {
+            /* 1. La imagen de fondo */
+            background-image: url('Imagenes/Img1.jpeg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            
+            color: rgb(191, 19, 214);
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* El contenedor ahora se adapta al ancho de la pantalla */
+        .pantalla-hack {
+            border: 1px solid rgb(32, 60, 198);
+            padding: 20px; /* Reducimos padding para móviles */
+            box-shadow: 0 0 20px rgba(21, 101, 214, 0.2);
+            text-align: center;
+            width: 90%; /* Ocupa el 90% del ancho disponible */
+            max-width: 600px; /* Pero no crece más de 600px en PC */
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        /* Espacio donde se arma la palabra */
+        #palabra-destino {
+            display: flex;
+            gap: 5px;
+            height: 50px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgb(107, 7, 189);
+            width: 100%; /* Flexible */
+            justify-content: center;
+            flex-wrap: wrap; /* Si la palabra es larga, baja a la siguiente línea */
+        }
+
+        /* Espacio de letras mezcladas */
+        #letras-origen {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Letras flexibles */
+        .letra {
+            /* Usamos 'vw' para que la letra se ajuste al ancho de la pantalla */
+            font-size: 8vw; 
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .letra:hover {
+            background: rgb(14, 203, 191);
+            color: #000;
+        }
+
+        /* Efecto de error */
+        .error {
+            color: red !important;
+            animation: sacudida 0.2s;
+        }
+
+        @keyframes sacudida {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(5px); }
+            50% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Ajuste para pantallas grandes (PC) */
+        @media (min-width: 768px) {
+            .letra {
+                font-size: 2.5rem; /* Tamaño fijo en monitores */
+            }
+            #palabra-destino {
+                height: 70px;
+            }
+        }
+
+        h2 { letter-spacing: 5px; font-size: 1rem; margin-bottom: 30px; }
+
+/* ESTILOS DE ACROSTICO.HTML */
+
+        .body_acros {
+            /* Degradado suave de esquina a esquina */
+            background: linear-gradient(135deg, #4b0082, #ff007f, #00d4ff);
+            background-attachment: fixed;
+            color: #e0fcfc; /* Un blanco azulado muy claro para legibilidad */
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .contenedor-acrostico {
+            background: rgba(132, 126, 126, 0.8); /* Fondo negro transparente para que resalten los colores */
+            border: 2px solid #00ffcc; /* Verde Acua para el borde */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(202, 215, 213, 0.3);
+        }
+
+        .linea {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            line-height: 1.5;
+        }
+
+        /* Resaltar la letra inicial */
+        .inicial {
+            color: #39ff14; /* Verde Neón para las letras del acróstico */
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px #39ff14;
+            margin-right: 8px;
+        }
+
+        /* AGREGA ESTO: La definición de la animación */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        /* MODIFICA O AGREGA: Esto le dice a las líneas que usen la animación */
+        .linea {
+            opacity: 0; 
+            animation: fadeIn 0.8s ease-out forwards;
+            color: #070608;
+            font-family: serif;
+        }
+
+        /* AGREGA ESTO: Los retrasos para el efecto cascada */
+        .linea:nth-child(1) { animation-delay: 0.2s; }
+        .linea:nth-child(2) { animation-delay: 0.7s; }
+        .linea:nth-child(3) { animation-delay: 1.2s; }
+        .linea:nth-child(4) { animation-delay: 1.7s; }
+        .linea:nth-child(5) { animation-delay: 2.2s; }
+        .linea:nth-child(6) { animation-delay: 2.7s; }
+        .linea:nth-child(7) { animation-delay: 3.2s; }
+        .linea:nth-child(8) { animation-delay: 3.7s; }
+        .linea:nth-child(9) { animation-delay: 4.2s; }
+        .linea:nth-child(10) { animation-delay: 4.7s; }
+        .linea:nth-child(11) { animation-delay: 5.2s; }
+        .linea:nth-child(12) { animation-delay: 5.7s; }
+        .linea:nth-child(13) { animation-delay: 6.2s; }
+        .linea:nth-child(14) { animation-delay: 6.7s; }
+
+
+        .header-barra {
+            border: 2px solid #00d4ff; /* Celeste */
+            background: rgba(75, 0, 130, 0.5); /* Morado traslúcido */
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+        }
+
+        .imagen-encabezado {
+            width: 100% !important;  /* Se estira a lo ancho */
+            height: 100% !important; /* Se estira a lo alto */
+            object-fit: cover;       /* Corta la imagen para que llene el rectángulo sin deformarse */
+            object-position: center; /* Centra la parte importante de la foto */
+            filter: brightness(0.9);
+            filter: hue-rotate(150deg) saturate(1.5);
+        }
+
+        /* Centrar el contenedor de la imagen */
+        .contenedor-acrostico .linea:first-child {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        h1 {
+            color: #00ffcc; /* Verde Acua para el título */
+            text-shadow: 2px 2px #4b0082; /* Sombra morada para contraste */
+            text-align: center;
+        }

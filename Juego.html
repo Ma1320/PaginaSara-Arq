@@ -3,101 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
     <title>Ciberdelito - Ordenar</title>
-    <style>
-        body {
-            /* 1. La imagen de fondo */
-            background-image: url('Imagenes/Img1.jpeg'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-
-            
-            color: rgb(191, 19, 214);
-            font-family: 'Courier New', monospace;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        /* El contenedor ahora se adapta al ancho de la pantalla */
-        .pantalla-hack {
-            border: 1px solid rgb(32, 60, 198);
-            padding: 20px; /* Reducimos padding para móviles */
-            box-shadow: 0 0 20px rgba(21, 101, 214, 0.2);
-            text-align: center;
-            width: 90%; /* Ocupa el 90% del ancho disponible */
-            max-width: 600px; /* Pero no crece más de 600px en PC */
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        /* Espacio donde se arma la palabra */
-        #palabra-destino {
-            display: flex;
-            gap: 5px;
-            height: 50px;
-            margin-bottom: 30px;
-            border-bottom: 2px solid rgb(107, 7, 189);
-            width: 100%; /* Flexible */
-            justify-content: center;
-            flex-wrap: wrap; /* Si la palabra es larga, baja a la siguiente línea */
-        }
-
-        /* Espacio de letras mezcladas */
-        #letras-origen {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        /* Letras flexibles */
-        .letra {
-            /* Usamos 'vw' para que la letra se ajuste al ancho de la pantalla */
-            font-size: 8vw; 
-            font-weight: bold;
-            cursor: pointer;
-            padding: 5px;
-            transition: all 0.2s;
-            user-select: none;
-        }
-
-        .letra:hover {
-            background: rgb(14, 203, 191);
-            color: #000;
-        }
-
-        /* Efecto de error */
-        .error {
-            color: red !important;
-            animation: sacudida 0.2s;
-        }
-
-        @keyframes sacudida {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(5px); }
-            50% { transform: translateX(-5px); }
-            100% { transform: translateX(0); }
-        }
-
-        /* Ajuste para pantallas grandes (PC) */
-        @media (min-width: 768px) {
-            .letra {
-                font-size: 2.5rem; /* Tamaño fijo en monitores */
-            }
-            #palabra-destino {
-                height: 70px;
-            }
-        }
-
-        h2 { letter-spacing: 5px; font-size: 1rem; margin-bottom: 30px; }
-    </style>
 </head>
-<body>
+<body class="body_juego">
 
     <div class="pantalla-hack">
         <h2>DECODIFICAR PALABRA CLAVE</h2>
